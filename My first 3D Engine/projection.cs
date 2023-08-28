@@ -83,7 +83,7 @@ namespace My_first_3D_Engine
                 result.y /= w;
                 result.z /= w;
             }
-            textBox1.Text = result.x.ToString();
+            textBox1.Text = textBox1.Text + Environment.NewLine + result.x.ToString();
             textBox1.Text = textBox1.Text + Environment.NewLine + result.y.ToString();
             textBox1.Text = textBox1.Text + Environment.NewLine + result.z.ToString();
             return result;
