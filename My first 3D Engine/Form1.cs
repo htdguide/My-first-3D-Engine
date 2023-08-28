@@ -13,18 +13,23 @@ namespace My_first_3D_Engine
 {
     public partial class Form1 : Form
     {
-        constructor constructor;
+        public Panel panel1;
+        constructor constr;
+        projection proj;
+        objectModel testProj, test;
 
         public Form1()
         {
-            constructor = new constructor();
             InitializeComponent();
+            proj = new projection(displayPanel, textBox1);
+            constr = new constructor();
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
-            objectModel test = constructor.modelReader();
-
+            test = constr.modelReader();
+            testProj = proj.createProjection(test);
+            proj.drawModel(testProj);
         }
     }
 }

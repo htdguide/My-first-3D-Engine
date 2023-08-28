@@ -57,6 +57,7 @@
     <Compile Include="objects.cs" />
     <Compile Include="point.cs" />
     <Compile Include="Program.cs" />
+    <Compile Include="projection.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Triangle.cs" />
     <EmbeddedResource Include="Form1.resx">

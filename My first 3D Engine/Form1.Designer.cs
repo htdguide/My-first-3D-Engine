@@ -28,20 +28,20 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.display = new System.Windows.Forms.Panel();
+            this.displayPanel = new System.Windows.Forms.Panel();
             this.button1 = new System.Windows.Forms.Button();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
-            // display
+            // displayPanel
             // 
-            this.display.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.display.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.display.Location = new System.Drawing.Point(195, 23);
-            this.display.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.display.Name = "display";
-            this.display.Size = new System.Drawing.Size(399, 368);
-            this.display.TabIndex = 0;
+            this.displayPanel.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.displayPanel.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.displayPanel.Location = new System.Drawing.Point(195, 23);
+            this.displayPanel.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.displayPanel.Name = "displayPanel";
+            this.displayPanel.Size = new System.Drawing.Size(399, 368);
+            this.displayPanel.TabIndex = 0;
             // 
             // button1
             // 
@@ -68,7 +68,7 @@
             this.ClientSize = new System.Drawing.Size(800, 450);
             this.Controls.Add(this.textBox1);
             this.Controls.Add(this.button1);
-            this.Controls.Add(this.display);
+            this.Controls.Add(this.displayPanel);
             this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Name = "Form1";
             this.Text = "Form1";
@@ -79,7 +79,7 @@
 
         #endregion
 
-        private System.Windows.Forms.Panel display;
+        private System.Windows.Forms.Panel displayPanel;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.TextBox textBox1;
     }
