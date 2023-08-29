@@ -31,6 +31,8 @@ namespace My_first_3D_Engine
         private void button1_Click(object sender, EventArgs e)
         {
             test = constr.modelReader();
+            testProj = proj.createProjection(test);
+            proj.drawModel(testProj);
         }
     }
 }
