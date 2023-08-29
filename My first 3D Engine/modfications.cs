@@ -22,9 +22,9 @@ namespace My_first_3D_Engine
 
             for (int i = 0; i < f.Rank; i++)
             {
-                result.x = result.x + f[0,i] * point.x;
-                result.y = result.y + f[1,i] * point.y;
-                result.z = result.z + f[2,i] * point.z;
+                result.x = result.x + f[0, i] * point.x;
+                result.y = result.y + f[1, i] * point.y;
+                result.z = result.z + f[2, i] * point.z;
             }
             return result;
         }
@@ -40,6 +40,7 @@ namespace My_first_3D_Engine
                     result.mesh[i].points[j] = linearTransformation(model.mesh[i].points[j], f);
                 }
             }
+
             return result;
         }
 

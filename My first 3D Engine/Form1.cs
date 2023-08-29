@@ -32,18 +32,16 @@ namespace My_first_3D_Engine
 
         private void timer1_Tick(object sender, EventArgs e)
         {
-            test = modif.RotateXY(test, 1);
-            testProj = proj.createProjection(test);
-            proj.drawModel(testProj);
+
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
             test = constr.modelReader();
-            test = modif.objectScale(test, 100);
-            test = modif.objectMove(test, 20, 20, 1);
-            
-            timer1.Enabled = true;
+            test = modif.objectMove(test, 0, 0, 5);
+            test = proj.funk(test);
+            testProj = proj.createProjection(test);
+            proj.drawModel(testProj);
         }
     }
 }
