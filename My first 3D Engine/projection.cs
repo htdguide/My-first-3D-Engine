@@ -13,7 +13,7 @@ namespace My_first_3D_Engine
         private Panel panel1;
         private TextBox textBox1;
         double aspectRatio;
-        double zFar = 1000; //Farest point
+        double zFar = 100; //Farest point
         double zNear = 0.1; //Nearest point
         double FOVAngle = 90; //Field of view
         double f, q;
@@ -53,6 +53,8 @@ namespace My_first_3D_Engine
 
         public void drawModel(objectModel model) //Should be already projected model
         {
+            Graphics g = panel1.CreateGraphics();
+            g.Clear(Color.Black);
             for (int i = 0; i < model.mesh.Length; i++)
             {
                 drawTriangle(model.mesh[i]);

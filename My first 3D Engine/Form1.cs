@@ -18,21 +18,32 @@ namespace My_first_3D_Engine
         constructor constr;
         projection proj;
         objectModel testProj, test;
-        
+        modfications modif;
+        int x = 1;
+
 
         public Form1()
         {
             InitializeComponent();
             proj = new projection(displayPanel, textBox1);
             constr = new constructor(textBox1);
-            
+            modif = new modfications(textBox1);
+        }
+
+        private void timer1_Tick(object sender, EventArgs e)
+        {
+            test = modif.RotateXY(test, 1);
+            testProj = proj.createProjection(test);
+            proj.drawModel(testProj);
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
             test = constr.modelReader();
-            testProj = proj.createProjection(test);
-            proj.drawModel(testProj);
+            test = modif.objectScale(test, 100);
+            test = modif.objectMove(test, 20, 20, 1);
+            
+            timer1.Enabled = true;
         }
     }
 }
