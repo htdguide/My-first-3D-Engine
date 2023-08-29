@@ -16,6 +16,7 @@ namespace My_first_3D_Engine
         double fFar = 1000; //Farest point
         double fNear = 0.1; //Nearest point
         double FOVAngle = 90; //Field of view
+        double FOVrad; //Field of view in radians
         double f, q;
         double[,] projMatrix = new double[4, 4]; //Projection matrix
 
@@ -27,28 +28,31 @@ namespace My_first_3D_Engine
 
         public objectModel createProjection(objectModel model)
         {
-           objectModel result = new objectModel("projected", model.mesh);
+
+
+            objectModel result = new objectModel("projected", model.mesh);
 
 
             //Projection matrix filling
-           aspectRatio = panel1.Height/panel1.Width;
-           f = 1 / Math.Tan(FOVAngle * 0.5 / 180 * Math.PI); //Field of view in radians
-           q = fFar / (fFar - fNear);
-           projMatrix[0,0] = aspectRatio * f;
-           projMatrix[1,1] = f;
-           projMatrix[2,2] = q;
-           projMatrix[2,3] = 1.0;
-           projMatrix[3,2] = (-fFar * fNear) / (fFar - fNear);
-           projMatrix[3,3] = 0;
+            aspectRatio = 1;
+            FOVrad = FOVAngle / 180 * Math.PI;
+            f = 1 / Math.Tan(FOVrad/2); 
+            q = fFar / (fFar - fNear);
+            projMatrix[0,0] = aspectRatio * f;
+            projMatrix[1,1] = f;
+            projMatrix[2,2] = (fFar+fNear)/(fFar- fNear);
+            projMatrix[2,3] = 1.0;
+            projMatrix[3,2] = (2*fNear *fFar) / (fNear - fFar);
+            projMatrix[3,3] = 0;
 
             for (int i = 0; i < model.mesh.Length; i++)
             {
                 for (int j = 0; j < model.mesh[i].points.Length; j++)
                 {
-                   result.mesh[i].points[j] = multiplyByMatrix(model.mesh[i].points[j], projMatrix);
+                     result.mesh[i].points[j] = multiplyByMatrix(model.mesh[i].points[j], projMatrix);
                 }
             }
-           return result;
+               return result;
         }
 
         public void drawModel(objectModel model) //Should be already projected model
@@ -68,8 +72,10 @@ namespace My_first_3D_Engine
             {
                 for (int j = 0; j < model.mesh[i].points.Length; j++)
                 {
-                    result.mesh[i].points[j].x = model.mesh[i].points[j].x * 0.5 * panel1.Width;
-                    result.mesh[i].points[j].y = model.mesh[i].points[j].y * 0.5 * panel1.Height;
+                    result.mesh[i].points[j].x = model.mesh[i].points[j].x + 1;
+                    result.mesh[i].points[j].y = model.mesh[i].points[j].y + 1;
+                    result.mesh[i].points[j].x = model.mesh[i].points[j].x * 0.5 * 300;
+                    result.mesh[i].points[j].y = model.mesh[i].points[j].y * 0.5 * 300;
                 }
             }
             return result;
@@ -80,13 +86,19 @@ namespace My_first_3D_Engine
             Graphics g = panel1.CreateGraphics();
             Pen pen = new Pen(triangle.color);
             PointF[] t = new PointF[3];
-            t[0] = new Point(Convert.ToInt32(triangle.points[0].x), Convert.ToInt32(triangle.points[0].y));
-            t[1] = new Point(Convert.ToInt32(triangle.points[1].x), Convert.ToInt32(triangle.points[1].y));
-            t[2] = new Point(Convert.ToInt32(triangle.points[2].x), Convert.ToInt32(triangle.points[2].y));
+            t[0] = new Point(Convert.ToInt32(triangle.points[0].x + 150), Convert.ToInt32(triangle.points[0].y + 150));
+            t[1] = new Point(Convert.ToInt32(triangle.points[1].x + 150), Convert.ToInt32(triangle.points[1].y + 150));
+            t[2] = new Point(Convert.ToInt32(triangle.points[2].x + 150), Convert.ToInt32(triangle.points[2].y + 150));
             g.DrawPolygon(pen, t);
         }
-           
 
+        public point convert3dto2d(point p)
+        {
+            point result = p;
+            result.x = result.x / result.z;
+            result.y = result.y / result.z;
+            return result;
+        }
         public point multiplyByMatrix(point p, double[,] m)
         {
          
@@ -97,9 +109,9 @@ namespace My_first_3D_Engine
             double w = p.x * m[0,3] + p.y * m[1,3] + p.z * m[2,3] + m[3,3];
             if (w != 0.0)
             {
-                result.x /= w;
-                result.y /= w;
-                result.z /= w;
+                result.x = result.x / w;
+                result.y = result.y / w;
+                result.z = result.z / w;
             }
             return result;
         }

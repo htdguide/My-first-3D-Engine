@@ -42,12 +42,12 @@
             this.displayPanel.Location = new System.Drawing.Point(389, 23);
             this.displayPanel.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.displayPanel.Name = "displayPanel";
-            this.displayPanel.Size = new System.Drawing.Size(399, 368);
+            this.displayPanel.Size = new System.Drawing.Size(627, 578);
             this.displayPanel.TabIndex = 0;
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(351, 415);
+            this.button1.Location = new System.Drawing.Point(308, 400);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(75, 23);
             this.button1.TabIndex = 1;
@@ -66,13 +66,14 @@
             // 
             // timer1
             // 
+            this.timer1.Interval = 1;
             this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(1092, 602);
             this.Controls.Add(this.textBox1);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.displayPanel);

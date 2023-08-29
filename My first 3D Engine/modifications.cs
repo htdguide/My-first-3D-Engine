@@ -7,10 +7,10 @@ using System.Windows.Forms;
 
 namespace My_first_3D_Engine
 {
-    internal class modfications
+    internal class modifications
     {
         TextBox textbox;
-        public modfications(TextBox textbox) 
+        public modifications(TextBox textbox) 
         {
             this.textbox = textbox;
         }
@@ -44,24 +44,37 @@ namespace My_first_3D_Engine
             return result;
         }
 
-        public objectModel RotateXY(objectModel model, double angle)
+        public objectModel rotateZ(objectModel model, double angle)
         {
-            angle = angle * Math.PI / 180;
+           // angle = angle * Math.PI / 180;
             objectModel result = model;
-            double[,] turnMatrix = new double[3, 3];
+            double[,] turnMatrix = new double[4, 4];
             turnMatrix[0,0] = Math.Cos(angle);
-            turnMatrix[0,1] = -Math.Sin(angle);
-            turnMatrix[0,2] = 0;
-            turnMatrix[1,0] = Math.Sin(angle);
+            turnMatrix[0,1] = Math.Sin(angle);
+            turnMatrix[1,0] = -Math.Sin(angle);
             turnMatrix[1,1] = Math.Cos(angle);
-            turnMatrix[1,2] = 0;
-            turnMatrix[2,0] = 0;
-            turnMatrix[2,1] = 0;
             turnMatrix[2,2] = 1;
+            turnMatrix[3,3] = 1;
 
             result = modelLinearTransformation(model, turnMatrix);
             return result;
         }
+        public objectModel rotateX(objectModel model, double angle)
+        {
+           // angle = angle * Math.PI / 180;
+            objectModel result = model;
+            double[,] turnMatrix = new double[4, 4];
+            turnMatrix[0, 0] = 1;
+            turnMatrix[1, 1] = Math.Cos(angle * 0.5);
+            turnMatrix[1, 2] = Math.Sin(angle * 0.5);
+            turnMatrix[2, 1] = -Math.Sin(angle * 0.5);
+            turnMatrix[2, 2] = Math.Cos(angle * 0.5);
+            turnMatrix[3, 3] = 1;
+
+            result = modelLinearTransformation(model, turnMatrix);
+            return result;
+        }
+
         public objectModel objectMove(objectModel model, double x, double y, double z) 
         { 
             objectModel result = model;

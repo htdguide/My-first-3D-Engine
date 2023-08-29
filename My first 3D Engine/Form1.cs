@@ -17,9 +17,9 @@ namespace My_first_3D_Engine
         public Panel panel1;
         constructor constr;
         projection proj;
-        objectModel testProj, test;
-        modfications modif;
-        int x = 1;
+        objectModel testProj, model, mtest, ptest;
+        modifications modif;
+        double x = 0;
 
 
         public Form1()
@@ -27,21 +27,22 @@ namespace My_first_3D_Engine
             InitializeComponent();
             proj = new projection(displayPanel, textBox1);
             constr = new constructor(textBox1);
-            modif = new modfications(textBox1);
+            modif = new modifications(textBox1);
         }
 
         private void timer1_Tick(object sender, EventArgs e)
         {
-
+            model = constr.modelReader();
+            model = modif.objectMove(model, 0, 0, x);
+            mtest = proj.funk(model);
+            mtest = proj.createProjection(mtest);
+            proj.drawModel(mtest);
+            x = x + 0.1;
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
-            test = constr.modelReader();
-            test = modif.objectMove(test, 0, 0, 5);
-            test = proj.funk(test);
-            testProj = proj.createProjection(test);
-            proj.drawModel(testProj);
+            timer1.Enabled = true;
         }
     }
 }
