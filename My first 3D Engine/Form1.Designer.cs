@@ -37,7 +37,7 @@
             // 
             this.displayPanel.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.displayPanel.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.displayPanel.Location = new System.Drawing.Point(195, 23);
+            this.displayPanel.Location = new System.Drawing.Point(389, 23);
             this.displayPanel.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.displayPanel.Name = "displayPanel";
             this.displayPanel.Size = new System.Drawing.Size(399, 368);
@@ -59,7 +59,7 @@
             this.textBox1.Multiline = true;
             this.textBox1.Name = "textBox1";
             this.textBox1.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.textBox1.Size = new System.Drawing.Size(158, 368);
+            this.textBox1.Size = new System.Drawing.Size(371, 368);
             this.textBox1.TabIndex = 2;
             // 
             // Form1

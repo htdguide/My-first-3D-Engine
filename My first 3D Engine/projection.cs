@@ -27,25 +27,26 @@ namespace My_first_3D_Engine
 
         public objectModel createProjection(objectModel model)
         {
-           objectModel result = model;
+           objectModel result = new objectModel("projected", model.mesh);
 
-           //Projection matrix filling
+
+            //Projection matrix filling
            aspectRatio = panel1.Height/panel1.Width;
            f = 1 / Math.Tan(FOVAngle * 0.5 / 180 * Math.PI); //Field of view in radians
            q = zFar / (zFar - zNear);
            projMatrix[0,0] = aspectRatio * f;
            projMatrix[1,1] = f;
-           projMatrix[2,2] = zFar / (zFar - zNear);
+           projMatrix[2, 2] = q;
            projMatrix[2,3] = 1.0;
-           projMatrix[3,2] = (-zFar * zNear) / (zFar - zNear);
+           projMatrix[3, 2] = -zNear * q;
            projMatrix[3,3] = 0;
 
-           for (int i = 0; i < model.mesh.Length; i++)
-           {
-               for (int j = 0; j < model.mesh[i].points.Length; j++)
-               {
+            for (int i = 0; i < model.mesh.Length; i++)
+            {
+                for (int j = 0; j < model.mesh[i].points.Length; j++)
+                {
                    result.mesh[i].points[j] = multiplyByMatrix(model.mesh[i].points[j], projMatrix);
-               }
+                }
            }
            return result;
         }
@@ -72,6 +73,11 @@ namespace My_first_3D_Engine
 
         public point multiplyByMatrix(point p, double[,] m)
         {
+           // textBox1.Text = textBox1.Text + Environment.NewLine + p.x.ToString();
+           // textBox1.Text = textBox1.Text + Environment.NewLine + p.y.ToString();
+           // textBox1.Text = textBox1.Text + Environment.NewLine + p.z.ToString();
+           // textBox1.Text = textBox1.Text + Environment.NewLine;
+
             point result = new point(0,0,0);
             result.x = p.x * m[0,0] + p.y * m[1,0] + p.z * m[2,0] + m[3,0];
             result.y = p.x * m[0,1] + p.y * m[1,1] + p.z * m[2,1] + m[3,1];
@@ -83,9 +89,6 @@ namespace My_first_3D_Engine
                 result.y /= w;
                 result.z /= w;
             }
-            textBox1.Text = textBox1.Text + Environment.NewLine + result.x.ToString();
-            textBox1.Text = textBox1.Text + Environment.NewLine + result.y.ToString();
-            textBox1.Text = textBox1.Text + Environment.NewLine + result.z.ToString();
             return result;
         }
 
